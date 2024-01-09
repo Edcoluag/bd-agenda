@@ -11,13 +11,22 @@ CREATE TABLE agenda
   telefmovi                  VARCHAR(12),
   email                      VARCHAR(30),
   fbc                        VARCHAR(30),
-  CONSTRAINT agenda_codigoper_pk PRIMARY KEY (codigoper)
+  distrito                   VARCHAR(30),
+  CONSTRAINT agenda_codigoper_pk PRIMARY KEY (codigoper),
+  CONSTRAINT agenda_distrito_fk FOREIGN KEY (distrito) REFERENCES distrito(codigodis)
+ );
+
+DROP TABLE IF EXISTS distrito;
+CREATE TABLE distrito
+ (codigodis                  VARCHAR(3)  NOT NULL,
+  nombre                     VARCHAR(45) NOT NULL,
+  CONSTRAINT distrito_codigodis_pk PRIMARY KEY (codigodis)
  );
 
 INSERT INTO agenda VALUES ('1', 'carlos', 'serna','av. palmeras 145',
-'043524875', '942587568','carlos@hotmail.com', 'carlos serna');
+'043524875', '942587568','carlos@hotmail.com', 'carlos serna','1');
 INSERT INTO agenda VALUES ('2', 'carmen', 'figueroa','av. alamos f-5',
-'043154784', '943124578','carmen@hotmail.com', 'carmen figeroa');
+'043154784', '943124578','carmen@hotmail.com', 'carmen figeroa','1');
 INSERT INTO agenda VALUES ('3', 'juan', 'perez','av.pacaes',
 '043758694', '943582674','juan@hotmail.com', 'juan perez');
 INSERT INTO agenda VALUES ('4', 'jean', 'ramirez','av.pardo 580',
@@ -34,4 +43,8 @@ INSERT INTO agenda VALUES ('9', 'antonhy', 'orbegozo','av.palmeras 456',
 '043151919', '942321212','antonhyelgozo@hotmail.com', 'antonhy orbegozo');
 INSERT INTO agenda VALUES ('10', 'giancarlo', 'sarrin','av.huaraz 123',
 '043411742', '9744105472','giancarlosarrines@hotmail.com', 'giancarlo sarrin');
+
+INSERT INTO distrito VALUES('1','Chimbote');
+INSERT INTO distrito VALUES('2','NuevoChimbote');
+
 COMMIT;
