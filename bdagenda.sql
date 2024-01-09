@@ -1,6 +1,13 @@
 CREATE SCHEMA IF NOT EXISTS BASEDATOS;
 USE BASEDATOS;
 
+DROP TABLE IF EXISTS distrito;
+CREATE TABLE distrito
+ (codigodis                  VARCHAR(3)  NOT NULL,
+  nombre                     VARCHAR(45) NOT NULL,
+  CONSTRAINT distrito_codigodis_pk PRIMARY KEY (codigodis)
+ );
+
 DROP TABLE IF EXISTS agenda;
 CREATE TABLE agenda
  (codigoper                  VARCHAR(3)  NOT NULL,
@@ -14,13 +21,6 @@ CREATE TABLE agenda
   distrito                   VARCHAR(30),
   CONSTRAINT agenda_codigoper_pk PRIMARY KEY (codigoper),
   CONSTRAINT agenda_distrito_fk FOREIGN KEY (distrito) REFERENCES distrito(codigodis)
- );
-
-DROP TABLE IF EXISTS distrito;
-CREATE TABLE distrito
- (codigodis                  VARCHAR(3)  NOT NULL,
-  nombre                     VARCHAR(45) NOT NULL,
-  CONSTRAINT distrito_codigodis_pk PRIMARY KEY (codigodis)
  );
 
 INSERT INTO agenda VALUES ('1', 'carlos', 'serna','av. palmeras 145',
